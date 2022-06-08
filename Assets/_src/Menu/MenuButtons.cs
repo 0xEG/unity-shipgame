@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
-    [SerializeField] private Canvas CharacterSelectionCanvas;
+    [SerializeField] private Canvas _characterSelectionCanvas;
     [SerializeField] private SaveLoad _saveLoad;
 
-    [SerializeField] private Button[] buttonArr;
+    [SerializeField] private Button[] _buttonArr;
 
     public void Continue()
     {
@@ -16,7 +16,7 @@ public class MenuButtons : MonoBehaviour
     
     public void NewGame()
     {
-        CharacterSelectionCanvas.gameObject.SetActive(true);
+        _characterSelectionCanvas.gameObject.SetActive(true);
         LoadFromFile();
     }
 
@@ -36,7 +36,7 @@ public class MenuButtons : MonoBehaviour
     }
     public void ClearClasses(){
    
-	    foreach(var button in buttonArr){
+	    foreach(var button in _buttonArr){
 		    button.interactable = true;
 	    }
     }

@@ -10,28 +10,28 @@ public class DayCycle : MonoBehaviour
     [SerializeField] private MaterialBase _foodManager;
     [SerializeField] private MaterialBase _time;
     [SerializeField] private CharacterManager _characterManager;
-    [SerializeField] private MaterialBase MoraleManager;
+    [SerializeField] private MaterialBase _moraleManager;
     [Space]
-    [SerializeField] private GameObject Yagmur;
-    [SerializeField] private GameObject Ruzgar;
+    [SerializeField] private GameObject _rainPrefab;
+    [SerializeField] private GameObject _windPrefab;
     [Space]
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip main, shop;
+    [SerializeField] private AudioClip _mainMusic, _shopMusic;
     [Space]
     [SerializeField] private FadeBlack _fadeBlack;
-    [SerializeField] private TextMeshProUGUI DayText;
+    [SerializeField] private TextMeshProUGUI _dayText;
 
     [SerializeField] private DotWeenAnims _dotWeen;
     [SerializeField] private RectTransform _eventPanel;
-    [SerializeField] private Canvas _city;
+    [SerializeField] private Canvas _cityCanvas;
 
     
     [Tooltip("1. Element must be food slider")][SerializeField] private GetDailyMats[] _dailyMats;
 
     private void Start()
     {
-        Yagmur.SetActive(false);
-        Ruzgar.SetActive(true);
+        _rainPrefab.SetActive(false);
+        _windPrefab.SetActive(true);
     }
 
     private void OnEnable()
@@ -56,7 +56,7 @@ public class DayCycle : MonoBehaviour
     public IEnumerator HandleDayCycle()
     {
         day++;
-        DayText.text = "Day " + day.ToString();
+        _dayText.text = "Day " + day.ToString();
         _fadeBlack.FadeIn(2);
 
         yield return new WaitForSeconds(2);
@@ -65,9 +65,9 @@ public class DayCycle : MonoBehaviour
 
         if (day == 10)
         {
-            _city.gameObject.SetActive(true);
-            _audioSource.clip = shop;
-            if (!_audioSource.isPlaying.Equals(shop))
+            _cityCanvas.gameObject.SetActive(true);
+            _audioSource.clip = _shopMusic;
+            if (!_audioSource.isPlaying.Equals(_shopMusic))
             {
                 _audioSource.Play();
             }
@@ -75,10 +75,10 @@ public class DayCycle : MonoBehaviour
         }
         else
         {
-            _city.gameObject.SetActive(false);
-            _audioSource.clip = main;
+            _cityCanvas.gameObject.SetActive(false);
+            _audioSource.clip = _mainMusic;
 
-            if (!_audioSource.isPlaying.Equals(main))
+            if (!_audioSource.isPlaying.Equals(_mainMusic))
             {
                 _audioSource.Play();
             }
@@ -87,21 +87,21 @@ public class DayCycle : MonoBehaviour
         var rand = Random.Range(0, 1);
         if (rand == 0)
         {
-            Yagmur.SetActive(true);
-            Ruzgar.SetActive(false);
+            _rainPrefab.SetActive(true);
+            _windPrefab.SetActive(false);
             
         }
         else
         {
-            Ruzgar.SetActive(true);
-            Yagmur.SetActive(false);
+            _windPrefab.SetActive(true);
+            _rainPrefab.SetActive(false);
         }
         
 	if(_foodManager.Value !> 0){
 		_foodManager.Add(FoodData());
 	}
 	else{
-		MoraleManager.Add(-10);
+		_moraleManager.Add(-10);
 	}
 
         if (_time.Value <=0)
@@ -129,7 +129,7 @@ public class DayCycle : MonoBehaviour
             total += character.FoodConsumption;
         }
 
-	MoraleManager.Add(-_dailyMats[0].Morale);
+	_moraleManager.Add(-_dailyMats[0].Morale);
 
         if (modifier != 0)
         {
