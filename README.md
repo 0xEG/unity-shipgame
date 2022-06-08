@@ -9,7 +9,7 @@ How to contact me: emirguzel@protonmail.com
 I do not own any music, sprite or decisions about game design.
 
 ## Music:
-- Ali Meric Uslu - badassunicorn@hotmail.com
+- Ali Meric Uslu - a.meric.uslu@hotmail.com
 
 ## Sprites:
 - Begum Filiz - begumflz7@gmail.com
