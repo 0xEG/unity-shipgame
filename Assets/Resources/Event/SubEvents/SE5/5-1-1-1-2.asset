@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d48e35c2c0743a459b440a14a88f931, type: 3}
+  m_Name: 5-1-1-1-2
+  m_EditorClassIdentifier: 
+  name: THE ROOM OF KNOWLEDGE
+  image: {fileID: 0}
+  isRepeatable: 0
+  description: Inside the room, there are all sorts of old texts about the culture
+    of the old civilization that lived here, from their gods to the way they dressed.
+    Expectedly, The only thing that actually interested your crew members were the
+    books about their jokes. Even though not much has been learned, the morale has
+    gone up.
+  isWar: 0
+  WarEvents: []
+  difficulty: 5
+  chance: 0a0000000a0000000a0000000a000000
+  EventTree: []
+  EventTreeFalse: []
+  Choices:
+  - 
+  - 
+  - 
+  - 
+  ClassRequirements: 06000000060000000600000006000000
+  Events:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []

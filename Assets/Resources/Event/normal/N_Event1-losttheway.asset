@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d48e35c2c0743a459b440a14a88f931, type: 3}
+  m_Name: N_Event1-losttheway
+  m_EditorClassIdentifier: 
+  name: OFF THE COURSE
+  image: {fileID: 0}
+  isRepeatable: 0
+  description: The ship is off the course it's supposed to go.
+  isWar: 0
+  WarEvents: []
+  difficulty: 5
+  chance: 0a0000000a0000000a0000000a000000
+  EventTree:
+  - {fileID: 11400000, guid: 6ec516c848fa28746ab8ec56345027e1, type: 2}
+  - {fileID: 11400000, guid: 2dcc18a4cfda78045b10efe79847962b, type: 2}
+  - {fileID: 11400000, guid: 4825efb2695107f4dac587ac68549cad, type: 2}
+  - {fileID: 0}
+  EventTreeFalse:
+  - {fileID: 11400000, guid: 2ab9cdb849e08e149b0c5159e46e5733, type: 2}
+  Choices:
+  - Spend time trying to find the right way.(-2 hours)
+  - Start to go a random way and hope that it's the right one.
+  - Let the navigator find the way.
+  - 
+  ClassRequirements: 06000000060000000300000006000000
+  Events:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []

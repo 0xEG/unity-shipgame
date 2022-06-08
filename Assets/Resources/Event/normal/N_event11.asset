@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d48e35c2c0743a459b440a14a88f931, type: 3}
+  m_Name: N_event11
+  m_EditorClassIdentifier: 
+  name: STRANGER ON THE SEAS
+  image: {fileID: 0}
+  isRepeatable: 0
+  description: As you sail, you encounter a man swimming in the ocean by himself.
+    He tells you to not go any further from this way, but try to go from another
+    way. When questioned further, he stops talking.
+  isWar: 0
+  WarEvents: []
+  difficulty: 5
+  chance: 0a0000000a0000000a0000000a000000
+  EventTree:
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: b0f8ec740b76f4c44849b9ee136d779f, type: 2}
+  - {fileID: 11400000, guid: 733010f4cfb6ab44cb2d4f57d1649926, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  EventTreeFalse: []
+  Choices:
+  - 
+  - Listen to the man & take a different route (-2 hours)
+  - Don't listen to the man & don't change the direction
+  - 
+  ClassRequirements: 06000000060000000600000006000000
+  Events:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2509004537026554444, guid: ab8dda86812783d4bb5c98d31d21cab8, type: 3}
+        m_TargetAssemblyTypeName: ChangeMaterials, Assembly-CSharp
+        m_MethodName: _ChangeTime
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []

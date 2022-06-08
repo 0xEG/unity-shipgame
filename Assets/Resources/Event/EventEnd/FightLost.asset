@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d48e35c2c0743a459b440a14a88f931, type: 3}
+  m_Name: FightLost
+  m_EditorClassIdentifier: 
+  name: FIGHT LOST
+  image: {fileID: 0}
+  isRepeatable: 0
+  description: 'After a hard fought battle, your crew has lost. '
+  isWar: 0
+  WarEvents: []
+  difficulty: 5
+  chance: 0a000000050000000a0000000a000000
+  EventTree:
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  EventTreeFalse:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: fa193b47d7004bd4991ec7c096807a04, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  Choices:
+  - 
+  - Understood.
+  - 
+  - 
+  ClassRequirements: 06000000060000000600000006000000
+  Events:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls: []

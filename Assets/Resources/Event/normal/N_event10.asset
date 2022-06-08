@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d48e35c2c0743a459b440a14a88f931, type: 3}
+  m_Name: N_event10
+  m_EditorClassIdentifier: 
+  name: WHEEL IS BROKEN
+  image: {fileID: 0}
+  isRepeatable: 0
+  description: After making a rough turn, the wheel suddenly breaks. What can be
+    done to fix it?
+  isWar: 0
+  WarEvents: []
+  difficulty: 5
+  chance: 0a0000000a0000000a0000000a000000
+  EventTree:
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  - {fileID: 11400000, guid: 5deec4c0b3131c34d9e476d6f87efed5, type: 2}
+  EventTreeFalse: []
+  Choices:
+  - 
+  - Fix the wheel by yourself. (-30 wood, -1 hour)
+  - don't fix it & lose speed. (-4 hours)
+  - Let the carpenter fix it. (-10 wood)
+  ClassRequirements: 06000000060000000600000001000000
+  Events:
+  - m_PersistentCalls:
+      m_Calls: []
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2509004537026554444, guid: ab8dda86812783d4bb5c98d31d21cab8, type: 3}
+        m_TargetAssemblyTypeName: ChangeMaterials, Assembly-CSharp
+        m_MethodName: _ChangeWood
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -30
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2509004537026554444, guid: ab8dda86812783d4bb5c98d31d21cab8, type: 3}
+        m_TargetAssemblyTypeName: ChangeMaterials, Assembly-CSharp
+        m_MethodName: _ChangeTime
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -1
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2509004537026554444, guid: ab8dda86812783d4bb5c98d31d21cab8, type: 3}
+        m_TargetAssemblyTypeName: ChangeMaterials, Assembly-CSharp
+        m_MethodName: _ChangeTime
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -4
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2509004537026554444, guid: ab8dda86812783d4bb5c98d31d21cab8, type: 3}
+        m_TargetAssemblyTypeName: ChangeMaterials, Assembly-CSharp
+        m_MethodName: _ChangeWood
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
