@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class DayCycle : MonoBehaviour
 {
+
     [SerializeField] private MaterialBase _foodManager;
     [SerializeField] private MaterialBase _time;
     [SerializeField] private CharacterManager _characterManager;
@@ -66,12 +67,21 @@ public class DayCycle : MonoBehaviour
         {
             _city.gameObject.SetActive(true);
             _audioSource.clip = shop;
+            if (!_audioSource.isPlaying.Equals(shop))
+            {
+                _audioSource.Play();
+            }
 
         }
         else
         {
             _city.gameObject.SetActive(false);
             _audioSource.clip = main;
+
+            if (!_audioSource.isPlaying.Equals(main))
+            {
+                _audioSource.Play();
+            }
         }
         
         var rand = Random.Range(0, 1);

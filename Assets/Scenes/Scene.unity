@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf099aee09540d5ba1aa2b372b7e114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 200
+  maxValue: 50
   ModifierClass: 1
   _characterManager: {fileID: 1567240885}
   isMax: 1
@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf099aee09540d5ba1aa2b372b7e114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 50
+  maxValue: 15
   ModifierClass: 3
   _characterManager: {fileID: 1567240885}
   isMax: 0
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf099aee09540d5ba1aa2b372b7e114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 100
+  maxValue: 2
   ModifierClass: 6
   _characterManager: {fileID: 1567240885}
   isMax: 1
@@ -10529,7 +10529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf099aee09540d5ba1aa2b372b7e114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 500
+  maxValue: 100
   ModifierClass: 0
   _characterManager: {fileID: 1567240885}
   isMax: 0
@@ -18558,7 +18558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf099aee09540d5ba1aa2b372b7e114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxValue: 60
+  maxValue: 100
   ModifierClass: 5
   _characterManager: {fileID: 1567240885}
   isMax: 0
