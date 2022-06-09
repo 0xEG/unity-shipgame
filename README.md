@@ -10,6 +10,8 @@ How to contact me: emirguzel@protonmail.com
 # About Sprites and Music
 I do not own any music, sprite or decisions about game design.
 
+![Alt text](https://raw.githubusercontent.com/sixtrx/unity-shipgame/master/Screenshots/2.png)
+
 ## Music:
 - Ali Meric Uslu - a.meric.uslu@hotmail.com
 
@@ -18,3 +20,5 @@ I do not own any music, sprite or decisions about game design.
 - Deniz Kucukyaglioglu - hayatsizhan@gmail.com
 ## Game Design
 - Ozan Bolulu - ozan.bolulu@yahoo.com
+
+![Alt text](https://raw.githubusercontent.com/sixtrx/unity-shipgame/master/Screenshots/3.png)
