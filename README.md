@@ -1,6 +1,8 @@
 # unity-shipgame
 A resource management game project started at the IEU Gameathon, still in early stage of development contains bugs and needs more content.
 
+![Alt text](https://raw.githubusercontent.com/sixtrx/unity-shipgame/master/Screenshots/1.png)
+
 This repository won't get any feature updates, only bug fixes and code optimizations for current code.
 
 How to contact me: emirguzel@protonmail.com
