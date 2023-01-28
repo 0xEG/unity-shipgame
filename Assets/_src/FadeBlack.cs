@@ -1,52 +1,55 @@
-using System;
 using System.Collections;
-using UnityEngine;
+using _src.Managers;
 using DG.Tweening;
+using UnityEngine;
 
-public class FadeBlack : MonoBehaviour
+namespace _src
 {
-    [SerializeField] private CanvasGroup fadeCanvas;
-    private Tween fadeTween;
+    public class FadeBlack : MonoBehaviour
+    {
+        [SerializeField] private CanvasGroup fadeCanvas;
+        private Tween fadeTween;
 
-    public void FadeIn(float duration)
-    {
-        Fade(1f, duration, () =>
+        public void FadeIn(float duration)
         {
-            fadeCanvas.interactable = true;
-            fadeCanvas.blocksRaycasts = true;
-        });
-    }
-
-    public void FadeOut(float duration)
-    {
-        Fade(0f, duration, () =>
-        {
-            fadeCanvas.interactable = false;
-            fadeCanvas.blocksRaycasts = false;
-        });
-    }
-    
-    [ContextMenu("Fade")]
-    private void Fade(float endValue, float duration, TweenCallback onEnd)
-    {
-        if (fadeTween != null)
-        {
-            fadeTween.Kill(false);
+            Fade(1f, duration, () =>
+            {
+                fadeCanvas.interactable = true;
+                fadeCanvas.blocksRaycasts = true;
+            });
         }
 
-        fadeTween = fadeCanvas.DOFade(endValue, 1);
-        fadeTween.onComplete += onEnd;
-    }
+        public void FadeOut(float duration)
+        {
+            Fade(0f, duration, () =>
+            {
+                fadeCanvas.interactable = false;
+                fadeCanvas.blocksRaycasts = false;
+            });
+        }
+    
+        [ContextMenu("Fade")]
+        private void Fade(float endValue, float duration, TweenCallback onEnd)
+        {
+            if (fadeTween != null)
+            {
+                fadeTween.Kill(false);
+            }
 
-    public IEnumerator FadeFull()
-    {
-        yield return new WaitForSeconds(1f);
-        FadeIn(2);
-        yield return new WaitForSeconds(2f);
-        GameManager.Instance.UpdateGameState(GameState.Event);
-        yield return new WaitForSeconds(4f);
-        FadeOut(1f);
-        yield return new WaitForSeconds(1f);
-        yield return null;
+            fadeTween = fadeCanvas.DOFade(endValue, 1);
+            fadeTween.onComplete += onEnd;
+        }
+
+        public IEnumerator FadeFull()
+        {
+            yield return new WaitForSeconds(1f);
+            FadeIn(2);
+            yield return new WaitForSeconds(2f);
+            GameManager.Instance.UpdateGameState(GameState.Event);
+            yield return new WaitForSeconds(4f);
+            FadeOut(1f);
+            yield return new WaitForSeconds(1f);
+            yield return null;
+        }
     }
 }

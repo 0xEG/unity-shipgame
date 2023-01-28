@@ -1,21 +1,18 @@
+using _src.Character;
 using UnityEngine;
-using PCC;
 
-[CreateAssetMenu(fileName = "New Class", menuName = "Create Class")]
-public class CharacterCreator : ScriptableObject
+namespace _src.SOs
 {
-    public new string name;
-
-    [SerializeField] public ClassIdEnum ClassId;
-
-    public Sprite artwork;
-    
-    public int FoodConsumption = 5;
-    public float BuffModifier = 1.0f;
-
-
-    public void info()
+    [CreateAssetMenu(fileName = "New Class", menuName = "Create Class")]
+    public class CharacterCreator : ScriptableObject
     {
-        Debug.Log("Name: " + name + " Food consumption: "+ FoodConsumption + " Buff Modifier: " + BuffModifier);
+        public new string name;
+
+        [SerializeField] public ClassIdEnum ClassId;
+
+        public Sprite artwork;
+    
+        public int FoodConsumption = 5;
+        public float BuffModifier = 1.0f;
     }
 }

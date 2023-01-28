@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8581582034245881077}
   - component: {fileID: 8581582034245881078}
   m_Layer: 0
-  m_Name: "ya\u011Fmur efekti"
+  m_Name: RainParticlePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

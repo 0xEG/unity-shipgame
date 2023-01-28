@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using PCC;
+using _src.Character;
+using _src.Managers;
+using _src.MaterialSystems;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,14 +33,12 @@ public class MaterialSaveData
         ModifierClass = material.ModifierClass;
         Value = material.Value;
         Modifier = material.Modifier;
-        _modifier = material._modifier;
-        isMax = material.isMax;
+        isMax = material.doesHaveLimit;
     }
 
     public ClassIdEnum ModifierClass;
     public float Value;
     public float Modifier;
-    public float _modifier;
     public bool isMax;
 }
 
@@ -172,10 +172,10 @@ public class SaveLoad : MonoBehaviour
         var x = 0;
         foreach (var line in File.ReadLines(SaveFileMaterials))
         {
-            // Setting everything to 0 before load to prevent missdata
-            materialArray[x].SetAll(0, 0, 1, 1, false);
+            // Setting everything to 0 before load to prevent miss data
+            materialArray[x].SetAll(0, 0, 1, false);
             MatData = JsonUtility.FromJson<MaterialSaveData>(line);
-            materialArray[x].SetAll(MatData.ModifierClass, MatData.Value, MatData.Modifier, MatData._modifier,  MatData.isMax);
+            materialArray[x].SetAll(MatData.ModifierClass, MatData.Value, MatData.Modifier, MatData.isMax);
             x++;
         }
     }

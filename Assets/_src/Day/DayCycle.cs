@@ -1,140 +1,74 @@
-using System;
 using System.Collections;
+using _src.Managers;
+using _src.Menu;
 using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class DayCycle : MonoBehaviour
+namespace _src.Day
 {
+    public class DayCycle : MonoBehaviour
+    {
+        private int _dayCount = 1;
 
-    [SerializeField] private MaterialBase _foodManager;
-    [SerializeField] private MaterialBase _time;
-    [SerializeField] private CharacterManager _characterManager;
-    [SerializeField] private MaterialBase _moraleManager;
-    [Space]
-    [SerializeField] private GameObject _rainPrefab;
-    [SerializeField] private GameObject _windPrefab;
-    [Space]
-    [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _mainMusic, _shopMusic;
-    [Space]
-    [SerializeField] private FadeBlack _fadeBlack;
-    [SerializeField] private TextMeshProUGUI _dayText;
+        [SerializeField] private ShopManager shopManager;
 
-    [SerializeField] private DotWeenAnims _dotWeen;
-    [SerializeField] private RectTransform _eventPanel;
-    [SerializeField] private Canvas _cityCanvas;
+        [SerializeField] private MaterialManager materialManager;
+        
+        [Space] [Header("TRANSITION")]
+        [SerializeField] private FadeBlack fadeBlack;
 
+        [SerializeField] private TextMeshProUGUI dayText;
+
+        [SerializeField] private DotWeenAnims _dotWeen;
+        [SerializeField] private RectTransform _eventPanel;
     
-    [Tooltip("1. Element must be food slider")][SerializeField] private GetDailyMats[] _dailyMats;
-
-    private void Start()
-    {
-        _rainPrefab.SetActive(false);
-        _windPrefab.SetActive(true);
-    }
-
-    private void OnEnable()
-    {
-        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-    }
-
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
-    }
-
-    private void GameManagerOnGameStateChanged(GameState state)
-    {
-        if (state == GameState.EndOfDay)
+        private void OnEnable()
         {
-            StartCoroutine(HandleDayCycle());
+            GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         }
-    }
 
-    private int day = 1;
-    public IEnumerator HandleDayCycle()
-    {
-        day++;
-        _dayText.text = "Day " + day.ToString();
-        _fadeBlack.FadeIn(2);
-
-        yield return new WaitForSeconds(2);
-        _eventPanel.anchoredPosition = new Vector2(0, 1020);
-        _dotWeen.isOpened = false;
-
-        if (day == 10)
+        private void OnDisable()
         {
-            _cityCanvas.gameObject.SetActive(true);
-            _audioSource.clip = _shopMusic;
-            if (!_audioSource.isPlaying.Equals(_shopMusic))
-            {
-                _audioSource.Play();
-            }
-
+            GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
         }
-        else
-        {
-            _cityCanvas.gameObject.SetActive(false);
-            _audioSource.clip = _mainMusic;
 
-            if (!_audioSource.isPlaying.Equals(_mainMusic))
+        private void GameManagerOnGameStateChanged(GameState state)
+        {
+            if (state == GameState.EndOfDay)
             {
-                _audioSource.Play();
+                StartCoroutine(HandleDayCycle());
             }
         }
-        
-        var rand = Random.Range(0, 1);
-        if (rand == 0)
+
+        private IEnumerator HandleDayCycle()
         {
-            _rainPrefab.SetActive(true);
-            _windPrefab.SetActive(false);
+            IncreaseDayCount();
+
+            fadeBlack.FadeIn(2);
+            yield return new WaitForSeconds(2);
+
+            ResetEventPanel();
             
-        }
-        else
-        {
-            _windPrefab.SetActive(true);
-            _rainPrefab.SetActive(false);
-        }
-        
-	if(_foodManager.Value !> 0){
-		_foodManager.Add(FoodData());
-	}
-	else{
-		_moraleManager.Add(-10);
-	}
+            shopManager.OnDayEnd(_dayCount);
+            materialManager.OnDayEnd();
 
-        if (_time.Value <=0)
-        {
-            GameManager.Instance.UpdateGameState(GameState.Beast);
-        }
-        else
-        {
-            GameManager.Instance.UpdateGameState(GameState.Save);
-        }
-        yield return  new WaitForSeconds(2);
-        
-        _fadeBlack.FadeOut(2);
-        
-        yield return null;
-    }
+            yield return new WaitForSeconds(2);
 
-    public float FoodData()
-    {
-        var modifier = _dailyMats[0].Modifier;
-        var total = .0f;
+            fadeBlack.FadeOut(2);
 
-        foreach (var character in _characterManager.Crew)
-        {
-            total += character.FoodConsumption;
+            yield break;
         }
 
-	_moraleManager.Add(-_dailyMats[0].Morale);
-
-        if (modifier != 0)
+        private void ResetEventPanel()
         {
-            return -total / _dailyMats[0].Modifier;
+            _eventPanel.anchoredPosition = new Vector2(0, 1020);
+            _dotWeen.isOpened = false;
         }
-        return total= 0;
+
+        private void IncreaseDayCount()
+        {
+            _dayCount++;
+            dayText.text = "Day " + _dayCount.ToString();
+        }
     }
 }

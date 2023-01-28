@@ -1,8 +1,10 @@
 using System;
-using PCC;
-using Unity.VisualScripting;
+using _src.Character;
+using _src.Managers;
 using UnityEngine;
 
+namespace _src.MaterialSystems
+{
     public class MaterialBase : MonoBehaviour
     {
         [SerializeField] private float maxValue = 100;
@@ -11,34 +13,37 @@ using UnityEngine;
 
         public event EventHandler<ValueChangedEventArgs> OnValueChanged;
 
-        public float MaxValue => maxValue;
-        public bool isMax = true;
+        public bool doesHaveLimit = true;
 
-        private float value;
+        private float _value;
         public float Value
         {
-            get => value;
+            get => _value;
             private set
             {
-                if (isMax)
+                if (doesHaveLimit)
                 {
-                    this.value = Mathf.Clamp(value, 0, maxValue);
+                    this._value = Mathf.Clamp(value, 0, maxValue);
                 }
                 else
                 {
-                    this.value = Mathf.Clamp(value, 0, float.MaxValue);
+                    this._value = Mathf.Clamp(value, 0, float.MaxValue);
                 }
 
                 OnValueChanged?.Invoke(this, new ValueChangedEventArgs
                 {
-                    Value = this.value,
+                    Value = this._value,
                     MaxValue = maxValue
                 });
             }
         }
 
-        public float Modifier = 1.0f;
-        public float _modifier = 1.0f;
+        private float _modifier = 1.0f;
+        public float Modifier
+        {
+            get => _modifier;
+            set => _modifier = value;
+        }
 
         private void Start() => Value = maxValue;
 
@@ -49,7 +54,7 @@ using UnityEngine;
                 if (character.ClassId == ModifierClass)
                     Modifier = character.BuffModifier;
                 else
-                    Modifier = _modifier;
+                    Modifier = 1f;
             }
             Value += aValue * Modifier;
         }
@@ -61,13 +66,13 @@ using UnityEngine;
             _modifier += aValue;
         }
 
-        public void SetAll(ClassIdEnum classid, float value, float Modifier, float _modifier, bool max)
+        public void SetAll(ClassIdEnum modifierClass, float value, float modifier, bool doesHaveLimit)
         {
             ChangeValue(value);
-            this.Modifier = Modifier;
-            this._modifier = _modifier;
-            ModifierClass = classid;
-            isMax = max;
+            
+            Modifier = modifier;
+            ModifierClass = modifierClass;
+            this.doesHaveLimit = doesHaveLimit;
         }
     }
 
@@ -76,3 +81,4 @@ using UnityEngine;
         public float Value { get; set; }
         public float MaxValue { get; set; }
     }
+}

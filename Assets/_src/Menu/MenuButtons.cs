@@ -1,47 +1,50 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class MenuButtons : MonoBehaviour
+namespace _src.Menu
 {
-    [SerializeField] private Canvas _characterSelectionCanvas;
-    [SerializeField] private SaveLoad _saveLoad;
-
-    [SerializeField] private Button[] _buttonArr;
-
-    public void Continue()
+    public class MenuButtons : MonoBehaviour
     {
+        [SerializeField] private Canvas _characterSelectionCanvas;
+        [SerializeField] private SaveLoad _saveLoad;
+
+        [SerializeField] private Button[] _buttonArr;
+
+        public void Continue()
+        {
         
-    }
+        }
     
-    public void NewGame()
-    {
-        _characterSelectionCanvas.gameObject.SetActive(true);
-        LoadFromFile();
-    }
+        public void NewGame()
+        {
+            _characterSelectionCanvas.gameObject.SetActive(true);
+            LoadFromFile();
+        }
 
-    private void LoadFromFile()
-    {
+        private void LoadFromFile()
+        {
         
-    }
+        }
 
-    public void LoadGame()
-    {
-        _saveLoad.SaveAll();
-        SceneManager.LoadScene("Scenes/Scene");
-    }
-    public void OpenSettings()
-    {
+        public void LoadGame()
+        {
+            _saveLoad.SaveAll();
+            SceneManager.LoadScene("Scenes/Scene");
+        }
+        public void OpenSettings()
+        {
         
-    }
-    public void ClearClasses(){
+        }
+        public void ClearClasses(){
    
-	    foreach(var button in _buttonArr){
-		    button.interactable = true;
-	    }
-    }
-    public void Quit()
-    {
-        Application.Quit();
+            foreach(var button in _buttonArr){
+                button.interactable = true;
+            }
+        }
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }

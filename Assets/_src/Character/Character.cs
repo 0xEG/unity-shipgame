@@ -1,6 +1,7 @@
 using UnityEngine;
 
-namespace PCC{
+namespace _src.Character
+{
     public enum ClassIdEnum{
         Chef = 0,
         Carpenter,
@@ -22,7 +23,7 @@ namespace PCC{
         public Sprite CharacterSprite { get; set; }
         
 
-        #region Constructer
+        #region Constructers
         public Character(string name, ClassIdEnum classId, float buffModifier  , float foodConsumption)
         {
             Name = name;

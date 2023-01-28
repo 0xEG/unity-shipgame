@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class MenuSliders : MonoBehaviour
+namespace _src.Menu
 {
-    [SerializeField] private AudioSource _audioListener;
-    public void OnSliderValueChanged(float value)
+    public class MenuSliders : MonoBehaviour
     {
-        _audioListener.volume = value;
+        [SerializeField] private AudioSource _audioListener;
+        public void OnSliderValueChanged(float value)
+        {
+            _audioListener.volume = value;
+        }
     }
 }

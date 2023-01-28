@@ -1,121 +1,98 @@
-using System;
-using PCC;
+using _src.Character;
+using _src.Managers;
+using _src.MaterialSystems;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class ChangeMaterials : MonoBehaviour
+namespace _src.Events
 {
-    private readonly string characterManagerStr = "CharacterManager";
-    private readonly string moraleManagerStr = "Moral";
-    private readonly string foodManagerStr = "Food";
-    private readonly string woodManagerStr = "Wood";
-    private readonly string wineManagerStr = "Wine";
-    private readonly string goldManagerStr = "Gold";
-    private readonly string timeManagerStr = "Time";
-    private readonly string FightManagerStr = "FightMat";
-    private readonly string sldValue = "FightSlider";
-    private readonly string FinishButton = "FinishButton";
+    /// Used as a wrapper to get around Unity's inspector for making the development environment easier for designers,
+    /// 
+    /// As we were in a game jam I was not able to find better solution at the time,
+    /// As the game is not resource heavy on the system and this calls not being much it doesn't effect performance much.
+    ///
+    /// Used '_MethodName' naming to prevent confusion since this methods made for inspector and not suggested to use in actual code.
+    public class ChangeMaterials : MonoBehaviour
+    {
+        private readonly string FightManagerStr = "FightMat";
+        private readonly string sldValue = "FightSlider";
     
-    private GameObject x;
+        private GameObject tempGameObject;
 
-
-    public void _EnableFinish(){
-
-	    x = GameObject.FindGameObjectWithTag(FinishButton);
-	    x.GetComponent<Button>().interactable = true;
-    }
-
-    public void _ChangeGold(float gold)
-    {
-        x = GameObject.FindGameObjectWithTag(goldManagerStr);
-        x.GetComponent<MaterialBase>().Add(gold);
-    }
-    
-    public void _FightMaterial(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(FightManagerStr);
-        x.GetComponent<MaterialBase>().Add(y);
-    }
-    
-    public void _FightMat2()
-    {
-        x = GameObject.FindGameObjectWithTag(FightManagerStr);
-        print(x);
-        var b = GameObject.FindGameObjectWithTag(sldValue);
-        print(b);
-        print(-b.GetComponent<Slider>().value);
-        x.GetComponent<MaterialBase>().Add(-b.GetComponent<Slider>().value);
-    }
-    
-    public void _ChangeTime(float time)
-    {
-        x = GameObject.FindGameObjectWithTag(timeManagerStr);
-        x.GetComponent<MaterialBase>().Add(time);
-    }    
-    public void __ChangeFoodModifier(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(foodManagerStr);
-        var gameObject = GameObject.FindGameObjectWithTag(characterManagerStr);
-        var characterManager = gameObject.GetComponent<CharacterManager>();
-
-        foreach (var character in characterManager.Crew)
+        public void _ChangeGold(float gold)
         {
-            if (character.ClassId == ClassIdEnum.Chef)
+            MaterialManager.instance.GoldMaterial.Add(gold);
+        }
+    
+        public void _FightMaterial(float y)
+        {
+            MaterialManager.instance.FightMaterial.Add(y);
+        }
+    
+        public void _FightMat2()
+        {
+            tempGameObject = GameObject.FindGameObjectWithTag(FightManagerStr);
+            print(tempGameObject);
+            var b = GameObject.FindGameObjectWithTag(sldValue);
+            print(b);
+            print(-b.GetComponent<Slider>().value);
+            tempGameObject.GetComponent<MaterialBase>().Add(-b.GetComponent<Slider>().value);
+        }
+    
+        public void _ChangeTime(float time)
+        {
+            MaterialManager.instance.TimeMaterial.Add(time);
+        }    
+        
+        public void __ChangeFoodModifier(float y)
+        {
+            var characterManager = MaterialManager.instance.CharacterManager;
+
+            foreach (var character in characterManager.Crew)
             {
-                x.GetComponent<MaterialBase>().Modifier += y;
+                if (character.ClassId == ClassIdEnum.Chef)
+                {
+                    tempGameObject.GetComponent<MaterialBase>().Modifier += y;
+                }
             }
         }
-
-    }
-    public void _ChangeIsHurt(bool test)
-    {
-        x = GameObject.FindGameObjectWithTag(characterManagerStr);
-        var characterManager = x.GetComponent<CharacterManager>();
-
-        var RandClass = Random.Range(0, characterManager.Crew.Count);
-        characterManager.Crew[RandClass].IsAbleToWork = false;
-    }
-    
-    public void _ChangeFood(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(foodManagerStr);
-        x.GetComponent<MaterialBase>().Add(y);
-    }
-    
-    public void _ChangeWine(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(wineManagerStr);
-        x.GetComponent<MaterialBase>().Add(y);
-
-    }
-    public void _ChangeWood(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(woodManagerStr);
-        x.GetComponent<MaterialBase>().Add(y);
-
-    }
-    public void _ChangeMoral(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(moraleManagerStr);
-        x.GetComponent<MaterialBase>().Add(y);
-    }
-    public void _ChangeFoodConsumption(float y)
-    {
-        x = GameObject.FindGameObjectWithTag(characterManagerStr);
-        var CharacterManager = x.GetComponent<CharacterManager>();
-
-        foreach (var character in CharacterManager.Crew)
+        
+        public void _ChangeIsHurt(bool test)
         {
-            character.FoodConsumption += y;
-        }
-    }
+            var characterManager = MaterialManager.instance.CharacterManager;
 
-    private void OnGUI()
-    {
-                if (GUI.Button(new Rect(10, 10, 150, 100), "I am a button"))
-                {
-                    _FightMat2();
-                }
+            var randClass = Random.Range(0, characterManager.Crew.Count);
+        
+            characterManager.Crew[randClass].IsAbleToWork = false;
+        }
+    
+        public void _ChangeFood(float y)
+        {
+            MaterialManager.instance.FoodMaterial.Add(y);
+        }
+    
+        public void _ChangeWine(float y)
+        {
+            MaterialManager.instance.WineMaterial.Add(y);
+        }
+    
+        public void _ChangeWood(float y)
+        {
+            MaterialManager.instance.WoodMaterial.Add(y);
+        }
+        public void _ChangeMoral(float y)
+        {
+            MaterialManager.instance.MoraleMaterial.Add(y);
+        }
+        public void _ChangeFoodConsumption(float y)
+        {
+            var characterManager = MaterialManager.instance.CharacterManager;
+
+            foreach (var character in characterManager.Crew)
+            {
+                character.FoodConsumption += y;
+            }
+        }
     }
 }
